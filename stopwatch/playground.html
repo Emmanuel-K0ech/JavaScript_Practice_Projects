@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+</head>
+<body>
+    <h1>This is a JS Code Playground</h1>
+    <div id="stopwatch">00:00:00:00</div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+    <script>
+        let startTime = new Date();
+        let formatedTime;
+        let interval;
+        let currentTime;
+        
+        // function to convert difference in MilliSec to HH:MM:SS
+        function timeDifference(diff){
+            let hrs, min, sec, ms;
+
+            hrs = Math.floor(diff / (1000 * 60 * 60));
+            min = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            sec = Math.floor((diff % (1000 * 60)) / 1000);
+            ms = Math.floor((diff % 1000) / 10);
+            
+            formatedTime = `${hrs.toString().padStart(2, '0')}:
+                            ${min.toString().padStart(2, '0')}:
+                            ${sec.toString().padStart(2, '0')}:
+                            ${ms.toString().padStart(2, '0')}`
+        }
+
+        //Function to start Stopwatch
+        function startStopwatch(){
+            currentTime = Math.abs(new Date() - startTime);
+            timeDifference(currentTime)
+            document.getElementById("stopwatch").innerHTML = formatedTime;
+        }
+
+        //Function to print the time
+        function printTime(){
+            interval = setInterval(startStopwatch, 1);
+        }
+        
+
+        //Function to stop/pause the stopwatch
+        function stopTheWatch(){
+            clearInterval(interval);
+        }
+
+        //Function to reset the stopWatch
+        function resetStopwatch(){
+            const reset = '00:00:00:00';
+            startTime = null;
+            clearInterval(interval);
+            document.getElementById('stopwatch').innerHTML = reset;
+        }
+        // Event Listener
+        document.getElementById("start").addEventListener('click', printTime);
+        document.getElementById("stop").addEventListener('click', stopTheWatch);
+        document.getElementById("reset").addEventListener('click', resetStopwatch);
+    </script>
+</body>
+</html>
