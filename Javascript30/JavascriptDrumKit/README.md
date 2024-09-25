@@ -39,3 +39,4 @@ This project is part of the [30 Days JavaScript Challenge](https://javascript30.
 
 ## Acknowledgements
 - [Wes Bos](https://wesbos.com/) for the 30 Days JavaScript Challenge and his excellent tutorials.
+- Sounds used were from [Free Sound](https://freesound.org)
